@@ -50,5 +50,20 @@
 ;; Tests
 ;; Use tests to verify your solution. Consider using the sample data provided in the question
 
+(def sample-input "1000
+2000
+3000
+
+4000
+
+5000
+6000
+
+7000
+8000
+9000
+
+10000")
+
 (deftest sample-test
-  (t/is (= 2 (+ 1 1))))
+  (t/is (= 24000 (n-sum 1 (generator sample-input)))))
