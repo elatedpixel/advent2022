@@ -6,12 +6,12 @@
 
 ;; Generator Logic
 
-;; Solution Logic
 (def parser (comp
              (map str/split-lines)
              (map (partial map read-string))
              (map (partial reduce +))))
 
+;; Solution Logic
 (defn n-sum [n coll]
   (transduce (take n) + coll))
 
@@ -33,6 +33,18 @@
   "The solution to part 2. Will be called with the result of the generator"
   [input]
   (n-sum 3 input))
+
+; ➜ bb run :year 2022 :day 1
+; Generating Input
+; "Elapsed time: 16.099049 msecs"
+;
+; PART 1 SOLUTION:
+; "Elapsed time: 0.690199 msecs"
+; 70720
+;
+; PART 2 SOLUTION:
+; "Elapsed time: 0.065624 msecs"
+; 207148
 
 ;; Tests
 ;; Use tests to verify your solution. Consider using the sample data provided in the question
