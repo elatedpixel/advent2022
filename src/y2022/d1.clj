@@ -12,6 +12,7 @@
              (map (partial reduce +))))
 
 ;; Solution Logic
+
 (defn n-sum [n coll]
   (transduce (take n) + coll))
 
