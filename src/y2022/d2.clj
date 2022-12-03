@@ -1,7 +1,6 @@
 (ns y2022.d2
   (:require [clojure.test :as t :refer [deftest]]
             [clojure.string :as str]
-            [clojure.walk :as walk]
             [core :refer [invert-map]]))
 
 ;; PROBLEM LINK https://adventofcode.com/2022/day/2
