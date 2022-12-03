@@ -35,21 +35,6 @@
   [input]
   (n-sum 3 input))
 
-; ➜ bb run :year 2022 :day 1
-; Generating Input
-; "Elapsed time: 16.099049 msecs"
-;
-; PART 1 SOLUTION:
-; "Elapsed time: 0.690199 msecs"
-; 70720
-;
-; PART 2 SOLUTION:
-; "Elapsed time: 0.065624 msecs"
-; 207148
-
-;; Tests
-;; Use tests to verify your solution. Consider using the sample data provided in the question
-
 (def sample-input "1000
 2000
 3000
@@ -66,4 +51,20 @@
 10000")
 
 (deftest sample-test
-  (t/is (= 24000 (n-sum 1 (generator sample-input)))))
+  (t/is (= 24000 (solve-part-1 (generator sample-input))))
+  (t/is (= 45000 (solve-part-2 (generator sample-input)))))
+
+;; ➜ bb run :year 2022 :day 1
+;; Generating Input
+;; "Elapsed time: 16.099049 msecs"
+
+;; PART 1 SOLUTION:
+;; "Elapsed time: 0.690199 msecs"
+;; 70720
+
+;; PART 2 SOLUTION:
+;; "Elapsed time: 0.065624 msecs"
+;; 207148
+
+;; Tests
+;; Use tests to verify your solution. Consider using the sample data provided in the question
