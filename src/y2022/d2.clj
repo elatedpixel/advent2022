@@ -1,7 +1,8 @@
 (ns y2022.d2
   (:require [clojure.test :as t :refer [deftest]]
             [clojure.string :as str]
-            [clojure.walk :as walk]))
+            [clojure.walk :as walk]
+            [core :refer [invert-map]]))
 
 ;; PROBLEM LINK https://adventofcode.com/2022/day/2
 
@@ -31,18 +32,15 @@
               :rock     :win
               :scissors :draw}})
 
-(def shape-score
-  {:rock     1
-   :paper    2
-   :scissors 3})
-
-(def outcome-score
-  {:lose 0
-   :draw 3
-   :win  6})
+(def scores {:rock     1
+             :paper    2
+             :scissors 3
+             :lose     0
+             :draw     3
+             :win      6})
 
 (defn score [& things]
-  (transduce (map (merge shape-score outcome-score)) + things))
+  (transduce (map scores) + things))
 
 (defn shoot [rules round]
   (score
@@ -68,14 +66,14 @@
 (defn solve-part-2
   "The solution to part 2. Will be called with the result of the generator"
   [input]
-  (play (reduce-kv (fn [m k v] (assoc m k (into {} (for [[k' v'] v] [v' k'])))) {} rules)
+  (play (reduce-kv (fn [m k v] (assoc m k (invert-map v))) {} rules)
         (merge opponent-map goal-map) input))
 
 ;; Tests
 ;; Use tests to verify your solution. Consider using the sample data provided in the question
 
 (def ^:private sample-input
-"A Y
+  "A Y
 B X
 C Z")
 
