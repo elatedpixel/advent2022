@@ -63,3 +63,15 @@ CrZsJsPPZsGzwwsLwLmpwMDw")
 (deftest sample-test
   (t/is (= 157 (solve-part-1 (generator sample-input))))
   (t/is (= 70 (solve-part-2 (generator sample-input)))))
+
+;; ➜ bb run :year 2022 :day 3
+;; Generating Input
+;; "Elapsed time: 4.348484 msecs"
+
+;; PART 1 SOLUTION:
+;; "Elapsed time: 12.369296 msecs"
+;; 8349
+
+;; PART 2 SOLUTION:
+;; "Elapsed time: 19.56682 msecs"
+;; 2681
