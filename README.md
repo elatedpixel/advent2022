@@ -1,20 +1,10 @@
-# aoc-helper
+# Advent of Code 2022 solutions in Clojure
 
-## Overview 
-Clojure based [AOC](http://adventofcode.com) helper.
+## Overview
 
-This is a set of scripts which will help you work on Advent Of Code puzzles. 
+Clojure [AOC](http://adventofcode.com) solutions, using Josh's awesome [aoc-helper](https://github.com/jjcomer/aoc-helper).
 
-Specifically it will help you:
-
-* Pull puzzle input from AOC (and store to disk)
-* Generate solution files
-* Execute tests within your solutions
-* Run your solutions with the pulled input (and time your execution)
-
-This framework also supports having multiple years together in the same repository. Your session for each year is different so you will need to add an auth for each year you want to use.
-
-## Usage
+## Usage (from aoc-helper readme)
 
 ### Requirements
 
@@ -97,32 +87,3 @@ Currently all solutions will run within GraalVM and more specifically the babash
 ### Customizations
 
 If you would like to change the templated solution files, the template is found at `scripts\solution_template.clj`
-
-## Future Features
-
-* ~~Allow for using JVM clojure (for more speed)~~
-* Support for multiple solutions per-day
-* Switch to macros for defining generators
-* Switch to macros for defining solvers
-* Criterion (Benchmarking) integration
-* Ability to run all days sequentially
-* Optionally pprint solution output
-* More emojis ☃️
-* Better output formatting
-* Provide a filter for only running particular tests
-* Add docs for connecting REPLs
-* Add docs on finding session cookie
-
-## Changelog
-
-### 2022-12-01
-* Update User-Agent as per [request](https://www.reddit.com/r/adventofcode/comments/z9dhtd/please_include_your_contact_info_in_the_useragent/)
-
-### 2022-11-30
-* Added `bench` task using criterium to benchmark solution time
-* Added section for generator logic to the solution template
-
-### 2022-09-14
-* Changed over to execute using the JVM (will add back BB execution)
-* *Breaking* changed the parameters to keywords and updated documentation
-* Added `.tools-version` file to help choose a compatible jvm
