@@ -6,33 +6,42 @@
 
 ;; Generator Logic
 
+(def ^:private parser
+  "extract digits, convert to long, partition into pairs of pairs (ranges)"
+  (comp (map (partial re-seq #"[\d]+"))
+        (map (partial map parse-long))
+        (map (partial partition 2))))
+
 ;; Solution Logic
+
+(defn- ranges-contain?
+  "returns true if one range completely contains the other"
+  [[[a b] [c d]]]
+  (or (<= a c d b)
+      (<= c a b d)))
+
+(defn- ranges-overlap?
+  "returns true if the ranges overlap"
+  [[[a b] [c d]]]
+  (or (<= a d b)
+      (<= c b d)))
 
 ;; Entry Points
 
 (defn generator
   "The generator fn is used to parse your input into. The output of this fn will be passed into each of the solving fns"
   [input]
-  (sequence
-   (comp (map (partial re-seq #"[\d]+"))
-         (map (partial map parse-long))
-         (map (partial partition 2)))
-   (str/split-lines input)))
+  (sequence parser (str/split-lines input)))
 
 (defn solve-part-1
   "The solution to part 1. Will be called with the result of the generator"
   [input]
-  (count (filter (fn [[[a b] [c d]]] (or (<= a c d b)
-                                         (<= c a b d)))
-                 input)))
+  (count (filter ranges-contain? input)))
 
 (defn solve-part-2
   "The solution to part 2. Will be called with the result of the generator"
   [input]
-  (count (filter (fn [[[a b] [c d]]]
-                   (or (<= a d b)
-                       (<= c b d)))
-                 input)))
+  (count (filter ranges-overlap? input)))
 
 ;; Tests
 ;; Use tests to verify your solution. Consider using the sample data provided in the question
