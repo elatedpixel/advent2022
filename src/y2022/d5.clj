@@ -83,3 +83,15 @@ move 1 from 1 to 2")
 (deftest sample-test
   (t/is (= "CMZ" (solve-part-1 (generator sample-input))))
   (t/is (= "MCD" (solve-part-2 (generator sample-input)))))
+
+;; ➜ bb run :year 2022 :day 5
+;; Generating Input
+;; "Elapsed time: 5.999979 msecs"
+
+;; PART 1 SOLUTION:
+;; "Elapsed time: 16.604264 msecs"
+;; QPJPLMNNR
+
+;; PART 2 SOLUTION:
+;; "Elapsed time: 12.879464 msecs"
+;; BQDNWJPVJ
