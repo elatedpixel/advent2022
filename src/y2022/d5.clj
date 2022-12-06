@@ -39,6 +39,15 @@
       (update from-stack (comp vec (partial drop-last number-of-crates)))
       (update to-stack into (take-last number-of-crates (state from-stack)))))
 
+(defn- follow-instructions-to-move-crates [state instructions crane]
+  (let [final-state (reduce
+                     crane
+                     state
+                     instructions)]
+    (apply str
+           (for [i (range 1 (inc (count final-state)))]
+             (last (final-state i))))))
+
 ;; Entry Points
 
 (defn generator
@@ -51,24 +60,12 @@
 (defn solve-part-1
   "The solution to part 1. Will be called with the result of the generator"
   [{:keys [state instructions]}]
-  (let [final-state (reduce
-                     crate-mover-9000
-                     state
-                     instructions)]
-    (apply str
-           (for [i (range 1 (inc (count final-state)))]
-             (last (final-state i))))))
+  (follow-instructions-to-move-crates state instructions crate-mover-9000))
 
 (defn solve-part-2
   "The solution to part 2. Will be called with the result of the generator"
   [{:keys [state instructions]}]
-  (let [final-state (reduce
-                     crate-mover-9001
-                     state
-                     instructions)]
-    (apply str
-           (for [i (range 1 (inc (count final-state)))]
-             (last (final-state i))))))
+  (follow-instructions-to-move-crates state instructions crate-mover-9001))
 
 ;; Tests
 ;; Use tests to verify your solution. Consider using the sample data provided in the question
