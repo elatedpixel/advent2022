@@ -49,23 +49,21 @@ U 20")
       ([1 2] [2 1] [2 2]) [(offset y1 y2) (offset x1 x2)])))
 
 (defn move [state [dir n]]
-  (loop [i                             n
+  (loop [i                        n
          {:keys [rope] :as state} state]
     (if (zero? i) state
-        (let [rope' (loop [j 0
-                           rope rope
-                           prev nil]
-                      (if ((complement contains?) rope j) rope
-                          (let [prev' (if (nil? prev)
-                                        (case dir
-                                          L (update (rope j) 1 dec)
-                                          R (update (rope j) 1 inc)
-                                          U (update (rope j) 0 inc)
-                                          D (update (rope j) 0 dec))
-                                        (update-tail (rope j) prev))]
+        (let [rope' (loop [j    0
+                           rope rope]
+                      (if (>= j (count rope)) rope
+                          (let [current (if (zero? j)
+                                          (case dir
+                                            L (update (rope j) 1 dec)
+                                            R (update (rope j) 1 inc)
+                                            U (update (rope j) 0 inc)
+                                            D (update (rope j) 0 dec))
+                                          (update-tail (rope j) (rope (dec j))))]
                             (recur (inc j)
-                                   (assoc rope j prev')
-                                   prev'))))]
+                                   (assoc rope j current)))))]
           (recur (dec i)
                  (-> state
                      (assoc :rope rope')
@@ -86,7 +84,7 @@ U 20")
 (defn solve-part-2
   "The solution to part 2. Will be called with the result of the generator"
   [input]
-  (count (:visited (reduce move (make-rope 9) input))))
+  (count (:visited (reduce move (make-rope 10) input))))
 
 ;; Tests
 ;; Use tests to verify your solution. Consider using the sample data provided in the question
